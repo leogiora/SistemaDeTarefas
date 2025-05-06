@@ -1,0 +1,18 @@
+version: "3.1"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres-tarefas
+    restart: always
+    environment:
+      POSTGRES_USER: meuuser
+      POSTGRES_PASSWORD: minhasenha
+      POSTGRES_DB: tarefasdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

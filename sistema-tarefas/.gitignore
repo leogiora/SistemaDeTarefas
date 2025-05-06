@@ -1,0 +1,12 @@
+# Ignore arquivos do Docker
+pgdata/
+*.env
+
+# Ignore pastas do .NET (mais tarde)
+bin/
+obj/
+
+# Ignore pastas do Node/React (mais tarde)
+node_modules/
+dist/
+build/
