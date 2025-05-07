@@ -50,5 +50,30 @@ namespace TarefasApi.Controllers
 
             return CreatedAtAction(nameof(GetTarefas), new { id = novaTarefa.Id }, novaTarefa);
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> AtualizarTarefa(int id, [FromBody] Tarefa tarefaAtualizada)
+        {
+            var tarefaExistente = await _context.Tarefas.FindAsync(id);
+
+            if (tarefaExistente == null)
+            {
+                return NotFound("Tarefa não encontrada.");
+            }
+
+            if (string.IsNullOrWhiteSpace(tarefaAtualizada.Titulo))
+            {
+                return BadRequest("O campo 'Titulo' é obrigatório.");
+            }
+
+            tarefaExistente.Titulo = tarefaAtualizada.Titulo;
+            tarefaExistente.Descricao = tarefaAtualizada.Descricao;
+            tarefaExistente.Concluida = tarefaAtualizada.Concluida;
+
+            await _context.SaveChangesAsync();
+
+            return NoContent(); // sucesso sem retorno
+        }
+
     }
 }
