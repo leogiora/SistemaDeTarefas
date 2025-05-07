@@ -17,13 +17,13 @@ Este é um sistema de gerenciamento de tarefas com backend em C#, utilizando ASP
 
 ## 🧰 Como rodar o projeto
 
-##1. Clone o repositório
+1. Clone o repositório
 
 ```bash
 git clone https://github.com/seu-usuario/seu-repo.git
 cd sistema-tarefas
 
-##2. Suba o banco de dados PostgreSQL com Docker
+2. Suba o banco de dados PostgreSQL com Docker
 
 docker-compose up -d
 
@@ -39,7 +39,7 @@ Senha: minhasenha
 
 Banco: tarefasdb
 
-##3. Vá até o projeto da API e execute
+3. Vá até o projeto da API e execute
 
 cd sistema-tarefas-api/TarefasApi
 dotnet run
