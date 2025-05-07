@@ -33,5 +33,22 @@ namespace TarefasApi.Controllers
 
             return Ok(tarefas);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<Tarefa>> CriarTarefa([FromBody] Tarefa novaTarefa)
+        {
+            if (string.IsNullOrWhiteSpace(novaTarefa.Titulo))
+            {
+                return BadRequest("O campo 'Titulo' é obrigatório.");
+            }
+
+            novaTarefa.CriadaEm = DateTime.Now;
+            novaTarefa.Concluida = false;
+
+            _context.Tarefas.Add(novaTarefa);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetTarefas), new { id = novaTarefa.Id }, novaTarefa);
+        }
     }
 }
