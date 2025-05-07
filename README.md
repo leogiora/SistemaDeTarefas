@@ -20,7 +20,7 @@ Este é um sistema de gerenciamento de tarefas com backend em C#, utilizando ASP
 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repo.git
+git clone https://github.com/leogiora/SistemaDeTarefas.git
 cd sistema-tarefas
 
 2. Suba o banco de dados PostgreSQL com Docker
