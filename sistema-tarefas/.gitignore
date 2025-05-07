@@ -1,12 +1,39 @@
-# Ignore arquivos do Docker
-pgdata/
-*.env
-
-# Ignore pastas do .NET (mais tarde)
+# =====================
+# ⚙️ .NET BACKEND
+# =====================
 bin/
 obj/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
 
-# Ignore pastas do Node/React (mais tarde)
+# Configurações locais do VS Code ou Rider
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Banco local (caso crie um arquivo .db localmente em algum momento)
+*.db
+
+# =====================
+# 💻 FRONTEND (React/Vite)
+# =====================
 node_modules/
 dist/
-build/
+.env
+*.local
+
+# =====================
+# 🐳 DOCKER
+# =====================
+**/postgres-data/
+docker-compose.override.yml
+
+# =====================
+# 🧼 SISTEMA
+# =====================
+.DS_Store
+Thumbs.db
