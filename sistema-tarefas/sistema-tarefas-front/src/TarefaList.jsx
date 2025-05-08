@@ -6,16 +6,28 @@ export function TarefaList() {
   const [pagina, setPagina] = useState(1);
   const [tamanho, setTamanho] = useState(5);
 
-  useEffect(() => {
+  const carregarTarefas = () => {
     axios
       .get(`http://localhost:5194/tarefas?pagina=${pagina}&tamanho=${tamanho}`)
-      .then((res) => {
-        setTarefas(res.data);
-      })
-      .catch((err) => {
-        console.error("Erro ao buscar tarefas:", err);
-      });
-  }, [pagina, tamanho]);
+      .then((res) => setTarefas(res.data))
+      .catch((err) => console.error("Erro ao buscar tarefas:", err));
+  };
+
+  useEffect(() => {
+    carregarTarefas();
+  }, [pagina]);
+
+  const excluirTarefa = async (id) => {
+    if (!confirm("Deseja realmente excluir esta tarefa?")) return;
+
+    try {
+      await axios.delete(`http://localhost:5194/tarefas/${id}`);
+      carregarTarefas();
+    } catch (err) {
+      console.error("Erro ao excluir tarefa:", err);
+      alert("Erro ao excluir tarefa.");
+    }
+  };
 
   return (
     <div>
@@ -25,6 +37,16 @@ export function TarefaList() {
           <li key={tarefa.id}>
             <strong>{tarefa.titulo}</strong> - {tarefa.descricao} [
             {tarefa.concluida ? "✔️" : "❌"}]
+            <button
+              onClick={() => excluirTarefa(tarefa.id)}
+              style={{
+                marginLeft: "1rem",
+                background: "crimson",
+                color: "white",
+              }}
+            >
+              Excluir
+            </button>
           </li>
         ))}
       </ul>
