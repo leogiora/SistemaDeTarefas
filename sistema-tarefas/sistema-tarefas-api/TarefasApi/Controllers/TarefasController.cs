@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TarefasApi.Data;
 using TarefasApi.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TarefasApi.Controllers
 {
     [ApiController]
     [Route("tarefas")]
+    [Authorize]
     public class TarefasController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -17,6 +19,7 @@ namespace TarefasApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Tarefa>>> GetTarefas(
             [FromQuery] int pagina = 1,
             [FromQuery] int tamanho = 10)
